@@ -12,6 +12,7 @@ namespace Assignment1
             string[,] employees = new string[2,i];
             for (int j = 0; j < i; j++)
             {
+                // TODO add toupper for search by name
                 Console.WriteLine($"Please enter the name of employee number {j+1}.");
                 employees[0,j] = Console.ReadLine();
                 Console.WriteLine($"Please enter {employees[0, j]}'s salary.");
@@ -34,6 +35,7 @@ namespace Assignment1
                 }
                 else if (choice == "2")
                 {
+                    // TODO add toupper for search by name 
                     Console.WriteLine("Please enter an employees's name");
                     string userName = Console.ReadLine();
                     bool found = false;
