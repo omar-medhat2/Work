@@ -7,7 +7,9 @@ namespace ConsoleApp1
     {
         string Customer_Name;
         string Customer_Age;
+        // Chang datatype 
         int balance;
+        // validate 14 digits // REgex
         string id;
 
         public BankAcc(string Customer_Name, string Customer_Age, int balance, string id)
@@ -18,7 +20,8 @@ namespace ConsoleApp1
             this.id = id;
         }
         public void deposit(int depo) 
-        {
+        {           
+            
             balance += depo;
             Console.WriteLine("Deposit Successful");
         }
