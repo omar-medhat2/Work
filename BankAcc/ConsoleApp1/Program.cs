@@ -7,10 +7,10 @@ namespace ConsoleApp1
     {
         string Customer_Name;
         string Customer_Age;
-        int balance;
+        double balance;
         string id;
 
-        public BankAcc(string Customer_Name, string Customer_Age, int balance, string id)
+        public BankAcc(string Customer_Name, string Customer_Age, double balance, string id)
         {
             this.Customer_Name = Customer_Name;
             this.Customer_Age = Customer_Age;
@@ -56,13 +56,13 @@ namespace ConsoleApp1
                 while (Math.Floor(Math.Log10(Int64.Parse(d)) + 1) != 14);
             }
             Console.WriteLine("Please Enter inital deposit");
-            int dep = int.Parse(Console.ReadLine());
+            double dep = Convert.ToDouble(Console.ReadLine());
             if (dep < 1)
             {
                 do
                 {
                     Console.WriteLine("Invalid Deposit, please enter a valid deposit");
-                    dep = int.Parse(Console.ReadLine());
+                    dep = Convert.ToDouble(Console.ReadLine());
 
                 }
 
