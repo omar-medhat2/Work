@@ -7,9 +7,7 @@ namespace ConsoleApp1
     {
         string Customer_Name;
         string Customer_Age;
-        // Chang datatype 
         int balance;
-        // validate 14 digits // REgex
         string id;
 
         public BankAcc(string Customer_Name, string Customer_Age, int balance, string id)
@@ -46,8 +44,30 @@ namespace ConsoleApp1
             string a = Console.ReadLine();
             Console.WriteLine("Please Enter Customer ID");
             string d = Console.ReadLine();
+            if (Math.Floor(Math.Log10(Int64.Parse(d)) + 1) != 14)
+            {
+                
+                do {
+                    Console.WriteLine("Invalid ID, please renter the ID with 14 digits");
+                    Console.WriteLine("Please Enter Customer ID");
+                    d = Console.ReadLine();
+                }
+
+                while (Math.Floor(Math.Log10(Int64.Parse(d)) + 1) != 14);
+            }
             Console.WriteLine("Please Enter inital deposit");
             int dep = int.Parse(Console.ReadLine());
+            if (dep < 1)
+            {
+                do
+                {
+                    Console.WriteLine("Invalid Deposit, please enter a valid deposit");
+                    dep = int.Parse(Console.ReadLine());
+
+                }
+
+                while(dep < 1);
+            }
             BankAcc User = new BankAcc(name, a, dep, d);
             string userInput = "0";
             bool exit = false;
@@ -68,8 +88,8 @@ namespace ConsoleApp1
                 {
                     Console.WriteLine("Please enter withdrawal amount");
                     int w = int.Parse(Console.ReadLine());
-                    if (w < 1)
-                        Console.WriteLine("Invalid WIthdrawal");
+                    if (w < 1 || w > User.balance)
+                        Console.WriteLine("Invalid Withdrawal");
                     else
                         User.withdraw(w);
                 }
@@ -92,6 +112,8 @@ namespace ConsoleApp1
 
             while (exit == false);
             Console.WriteLine("Thank you for using this service");
+
+            
         }
     }
 }
