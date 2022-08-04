@@ -36,10 +36,7 @@ namespace ConsoleApp1
             Console.WriteLine("Please enter the customer's full name starting with the first name with the middle name as an initial followed by a dot and then the customer's last name.");
             string NameResult = Console.ReadLine();
             string[] NameSplit = NameResult.Split(' ');
-            string fname = NameSplit[0];
-            string mid  = NameSplit[1];
-            string lname = NameSplit[2];
-            Name Customer_n = new Name(fname, mid, lname, temptitle);
+            Name Customer_n = new Name(NameSplit[0], NameSplit[1], NameSplit[2], temptitle);
 
             Console.WriteLine("Please Enter Age");
             string a = Console.ReadLine();
