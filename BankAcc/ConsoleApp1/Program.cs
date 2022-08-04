@@ -3,58 +3,48 @@
 
 namespace ConsoleApp1
 {
-    internal class BankAcc
+    internal class Program
     {
-        string Customer_Name;
-        string Customer_Age;
-        double balance;
-        string id;
+       
 
-        public BankAcc(string Customer_Name, string Customer_Age, double balance, string id)
-        {
-            this.Customer_Name = Customer_Name;
-            this.Customer_Age = Customer_Age;
-            this.balance = balance;
-            this.id = id;
-        }
-        public void deposit(int depo) 
-        {           
-            
-            balance += depo;
-            Console.WriteLine("Deposit Successful");
-        }
-        public void withdraw(int withdrawal)
-        {
-            balance -= withdrawal;
-            Console.WriteLine("Withdrawal Successful");
-        }
-        public void display()
-        {
-            Console.WriteLine("Name: " + Customer_Name);
-            Console.WriteLine("Age: " + Customer_Age);
-            Console.WriteLine("ID Number: " + id);
-            Console.WriteLine("Account Balance: " + balance);
-        }
-        
         static void Main(string[] args)
         {
-            Console.WriteLine("Please Enter Customer Name");
-            string name = Console.ReadLine();
+            Console.WriteLine("We will now enter the customer's name. \nDoes the customer have an official title? Press 1 for yes and 2 for no.");
+            string titleConfirmation = Console.ReadLine();
+            string temptitle = "";
+            bool titleexit = false;
+            do
+            {
+                if (titleConfirmation == "1")
+                {
+                    Console.WriteLine("Please enter the specified title.");
+                    temptitle = Console.ReadLine();
+                    titleexit = true;
+                }
+
+                else if (titleConfirmation == "2")
+                {
+                    titleexit = true;
+                }
+
+                else
+                    Console.WriteLine("Invalid input, please press 1 for yes and 2 for no.");
+            }
+
+            while (titleexit == false);
+
+            Console.WriteLine("Please enter the customer's full name starting with the first name with the middle name as an initial followed by a dot and then the customer's last name.");
+            string NameResult = Console.ReadLine();
+            string[] NameSplit = NameResult.Split(' ');
+            string fname = NameSplit[0];
+            string mid  = NameSplit[1];
+            string lname = NameSplit[2];
+            Name Customer_n = new Name(fname, mid, lname, temptitle);
+
             Console.WriteLine("Please Enter Age");
             string a = Console.ReadLine();
             Console.WriteLine("Please Enter Customer ID");
             string d = Console.ReadLine();
-            if (Math.Floor(Math.Log10(Int64.Parse(d)) + 1) != 14)
-            {
-                
-                do {
-                    Console.WriteLine("Invalid ID, please renter the ID with 14 digits");
-                    Console.WriteLine("Please Enter Customer ID");
-                    d = Console.ReadLine();
-                }
-
-                while (Math.Floor(Math.Log10(Int64.Parse(d)) + 1) != 14);
-            }
             Console.WriteLine("Please Enter inital deposit");
             double dep = Convert.ToDouble(Console.ReadLine());
             if (dep < 1)
@@ -68,7 +58,8 @@ namespace ConsoleApp1
 
                 while(dep < 1);
             }
-            BankAcc User = new BankAcc(name, a, dep, d);
+            BankAcc User = new BankAcc(Customer_n, a, dep, Int64.Parse(d));
+           
             string userInput = "0";
             bool exit = false;
             do {
@@ -88,7 +79,7 @@ namespace ConsoleApp1
                 {
                     Console.WriteLine("Please enter withdrawal amount");
                     int w = int.Parse(Console.ReadLine());
-                    if (w < 1 || w > User.balance)
+                    if (w < 1 || w > User.Balance)
                         Console.WriteLine("Invalid Withdrawal");
                     else
                         User.withdraw(w);
@@ -96,7 +87,7 @@ namespace ConsoleApp1
 
                 else if (userInput == "3")
                 {
-                    User.display();
+                    Console.WriteLine(User.ToString());
                 }
 
                 else if (userInput == "4")
@@ -111,8 +102,7 @@ namespace ConsoleApp1
             }
 
             while (exit == false);
-            Console.WriteLine("Thank you for using this service");
-
+            
             
         }
     }
