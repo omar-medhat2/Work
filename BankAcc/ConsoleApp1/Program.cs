@@ -6,7 +6,7 @@ namespace ConsoleApp1
     internal class Program
     {
        
-
+        public static System.Collections.Generic.List<BankAcc> myBank = new System.Collections.Generic.List<BankAcc>();
         static void Main(string[] args)
         {
             Console.WriteLine("We will now enter the customer's name. \nDoes the customer have an official title? Press 1 for yes and 2 for no.");
@@ -56,7 +56,7 @@ namespace ConsoleApp1
                 while(dep < 1);
             }
             BankAcc User = new BankAcc(Customer_n, a, dep, Int64.Parse(d));
-           
+            myBank.Add(User);
             string userInput = "0";
             bool exit = false;
             do {

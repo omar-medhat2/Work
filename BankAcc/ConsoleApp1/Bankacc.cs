@@ -2,7 +2,7 @@
 
 namespace ConsoleApp1
 {
-    internal class BankAcc
+    internal class BankAcc : IBanktransactions
     {
         private Name fullName;
         private string age;
@@ -70,7 +70,7 @@ namespace ConsoleApp1
         }
 
         
-        public void deposit(int depo)
+        /*public void deposit(int depo)
         {
 
             balance += depo;
@@ -80,8 +80,18 @@ namespace ConsoleApp1
         {
             balance -= withdrawal;
             Console.WriteLine("Withdrawal Successful");
+        }*/
+        public void deposit(int amount)
+        {
+            balance += amount;
+            Console.WriteLine("Deposit Successful");
         }
-     
+
+        public void withdraw(int amount)
+        {
+            balance -= amount;
+            Console.WriteLine("Withdrawal Successful");
+        }
 
         public override string ToString()
         {
@@ -89,5 +99,6 @@ namespace ConsoleApp1
 
         }
 
+        
     }
 }
