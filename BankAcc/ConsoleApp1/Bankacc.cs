@@ -50,14 +50,6 @@ namespace ConsoleApp1
         {
             set 
             { 
-                if (Math.Floor(Math.Log10(value) + 1) != 14)
-                {
-                    throw new Exception("ID cannot be less than 14 digits");
-                }
-                if (value < 0)
-                {
-                    throw new Exception("ID cannot be negative");
-                }
                 this.id = value; 
             }
             get { return this.id; }
@@ -89,7 +81,7 @@ namespace ConsoleApp1
 
         public override string ToString()
         {
-            return $"Name: {fullName.ToString()} \nAge: {age}\nID: {id}\nBalance: {balance}";
+            return $"Name:{fullName.ToString()} \nAge: {age}\nID: {id}\nBalance: {balance}";
 
         }
 

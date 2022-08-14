@@ -38,37 +38,101 @@ namespace ConsoleApp1
                             titleexit = true;
                         }
 
-                        else
+                        else { 
                             Console.WriteLine("Invalid input, please press 1 for yes and 2 for no.");
+                            titleConfirmation = Console.ReadLine();
+                        }
                     }
 
                     while (titleexit == false);
+                    bool NameExit = false;
+                    string NameResult = null;
+                    do {
+                        Console.WriteLine("Please enter the customer's full name starting with the first name with the middle name as an initial then the customer's last name.");
+                        NameResult = Console.ReadLine();
+                        
+                        try
+                        {
 
-                    Console.WriteLine("Please enter the customer's full name starting with the first name with the middle name as an initial then the customer's last name.");
-                    string NameResult = Console.ReadLine();
-                    try
-                    {
+                            Regex regex1 = new Regex("^[A-Za-z ]+$");
 
-                        Regex regex = new Regex("^[A-Za-z ]+$");
-
-                        if (!regex.IsMatch(NameResult))
-                            throw new InvalidNameException(NameResult);
+                            if (!regex1.IsMatch(NameResult))
+                                throw new InvalidNameException(NameResult);
+                            else
+                                NameExit = true;
+                        }
+                        catch (InvalidNameException ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                            NameExit = false;
+                        }
                     }
-                    catch (InvalidNameException ex)
-                    {
-                        Console.WriteLine(ex.Message);
-                    }
+                    while (NameExit == false);
 
                     string[] NameSplit = NameResult.Split(' ');
                     Name Customer_n = new Name(NameSplit[0], NameSplit[1], NameSplit[2], temptitle);
+                    string a;
+                    bool Ageexit = false;
+                    do
+                    {
+                        Console.WriteLine("Please Enter Age");
+                        a = Console.ReadLine();
+                        try
+                        {
+                            Regex regexAge = new Regex(@"^\d+$");
+                            if (!regexAge.IsMatch(a))
+                                throw new InvalidAgeException();
+                            else
+                                Ageexit = true;
+                        }
 
+                        catch (InvalidAgeException ea)
+                        {
+                            Console.WriteLine(ea.Message);
+                        }
+                    }
+                    while (Ageexit == false);
+                    
+                    bool IDexit = false;
+                    string d;
+                    do {
+                        Console.WriteLine("Please Enter Customer ID");
+                        d = Console.ReadLine();
+                        try {
+                            Regex regexID = new Regex("^[0-9]{14}$");
+                            if (!regexID.IsMatch(d))
+                                throw new InvalidIDException();
+                            else
+                                IDexit = true;
+                        }
 
-                    Console.WriteLine("Please Enter Age");
-                    string a = Console.ReadLine();
-                    Console.WriteLine("Please Enter Customer ID");
-                    string d = Console.ReadLine();
-                    Console.WriteLine("Please Enter inital deposit");
-                    double dep = Convert.ToDouble(Console.ReadLine());
+                        catch(InvalidIDException es)
+                        {
+                            Console.WriteLine(es.Message);
+                        }
+                    }
+                    while (IDexit == false);
+ 
+                    bool DepositExit = false;
+                    string depValid;
+                    do {
+                        Console.WriteLine("Please Enter inital deposit");
+                        depValid = Console.ReadLine();
+                        try {
+                            Regex regex = new Regex(@"^\d+$");
+                            if (!regex.IsMatch(depValid))
+                                throw new InvalidDepositException();
+                            else
+                                DepositExit = true;
+                        }
+
+                        catch(InvalidDepositException es)
+                        {
+                            Console.WriteLine(es.Message);
+                        }
+                    }
+                    while (DepositExit == false);
+                    double dep = Convert.ToDouble(depValid);
                     if (dep < 1)
                     {
                         do

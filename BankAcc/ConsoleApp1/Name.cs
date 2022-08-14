@@ -30,7 +30,7 @@ namespace ConsoleApp1
                 output += title;
             }
 
-            output += (" " + fname + " " + mid + " " + lname);
+            output += (" " + fname + " " + mid + "." + " " + lname);
 
             return output;
         }
