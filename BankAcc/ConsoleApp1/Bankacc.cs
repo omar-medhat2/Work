@@ -9,12 +9,6 @@ namespace ConsoleApp1
         private double balance;
         private long id;
 
-        /*public BankAcc(string Customer_Age, double balance, long id)
-        {
-            this.Customer_Age = Customer_Age;
-            this.balance = balance;
-            this.id = id;
-        }*/
 
         public BankAcc(Name Customer_Name, string Customer_Age, double balance,long id)
       {
