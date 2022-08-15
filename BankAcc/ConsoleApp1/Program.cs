@@ -16,25 +16,26 @@ namespace ConsoleApp1
             BankAcc User = null;
             bool exit = false;
             do {
-                Console.WriteLine("Please choose a service; Press 1 to enter a new customer, Press 2 to deposit, Press 3 to Withdraw, Press 4 to display all information, and Press 5 if you would like to quit");
+                Console.WriteLine("Welcome to Bank Application\nPlease choose a service; Press 1 to enter a new customer, Press 2 to deposit, Press 3 to Withdraw, Press 4 to display all information, and Press 5 if you would like to quit");
                 userInput = Console.ReadLine();
                 if (userInput == "1")
                 {
                     Console.WriteLine("We will now enter the customer's name. \nDoes the customer have an official title? Press 1 for yes and 2 for no.");
                     string titleConfirmation = Console.ReadLine();
-                    string temptitle = "";
+                    short titleinput = 0;
                     bool titleexit = false;
                     do
                     {
                         if (titleConfirmation == "1")
                         {
-                            Console.WriteLine("Please enter the specified title.");
-                            temptitle = Console.ReadLine();
+                            Console.WriteLine("Please choose from available titles \n1: Eng.\n2: Dr.\n3: Mr.\n4: Ms.\n5: Mrs.");
+                            titleinput = Convert.ToInt16(Console.ReadLine());
                             titleexit = true;
                         }
 
                         else if (titleConfirmation == "2")
                         {
+                            titleinput = 0;
                             titleexit = true;
                         }
 
@@ -70,7 +71,7 @@ namespace ConsoleApp1
                     while (NameExit == false);
 
                     string[] NameSplit = NameResult.Split(' ');
-                    Name Customer_n = new Name(NameSplit[0], NameSplit[1], NameSplit[2], temptitle);
+                    Name Customer_n = new Name(NameSplit[0], NameSplit[1], NameSplit[2], titleinput);
                     string a;
                     bool Ageexit = false;
                     do
@@ -112,7 +113,29 @@ namespace ConsoleApp1
                         }
                     }
                     while (IDexit == false);
- 
+                    bool genderExit = false;
+                    string g;
+                    short gender_C = 0;
+                    do { 
+                        
+                        Console.WriteLine("Please specify customer gender, press 1 for Male and 2 for Female");
+                        g = Console.ReadLine();
+
+                        if (g == "1") { 
+                            gender_C = 1;
+                            genderExit = true;
+                        }
+                        else if (g == "2") { 
+                            gender_C = 2;
+                            genderExit = true;
+                        }
+                        else {
+                            Console.WriteLine("Invalid Gender, please press 1 for Male and 2 for Female");
+                            genderExit = false;
+                        }
+
+                    }
+                    while(genderExit == false);
                     bool DepositExit = false;
                     string depValid;
                     do {
@@ -145,7 +168,8 @@ namespace ConsoleApp1
                         while (dep < 1);
                     }
 
-                     User = new BankAcc(Customer_n, a, dep, Int64.Parse(d));
+                     User = new BankAcc(Customer_n, a, dep, Int64.Parse(d),GetGender(gender_C));
+                    
                     myBank.Add(User);
                 }
                else if (userInput == "2")
@@ -187,6 +211,15 @@ namespace ConsoleApp1
             while (exit == false);
             
             
+        }
+        public static Gender GetGender(short genderinput)
+        {
+            switch (genderinput)
+            {
+                case 1: return Gender.Male;
+                case 2: return Gender.Female;
+                default: return Gender.Unknown;
+            }
         }
     }
 }

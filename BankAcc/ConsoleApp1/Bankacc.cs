@@ -8,14 +8,16 @@ namespace ConsoleApp1
         private string age;
         private double balance;
         private long id;
+        private Gender gender;
 
 
-        public BankAcc(Name Customer_Name, string Customer_Age, double balance,long id)
+        public BankAcc(Name Customer_Name, string Customer_Age, double balance,long id, Gender gender)
       {
-          this.fullName = Customer_Name;
+          this.FullName = Customer_Name;
           this.Age = Customer_Age;
           this.Balance = balance;
           this.ID = id;
+          this.Gender = gender;
       }
 
         public Name FullName
@@ -55,18 +57,18 @@ namespace ConsoleApp1
             get { return this.id; }
         }
 
-        
-        /*public void deposit(int depo)
+        public Gender Gender
         {
+            set
+            {
+                this.gender = value;
+            }
 
-            balance += depo;
-            Console.WriteLine("Deposit Successful");
+            get { return this.gender; }
+
         }
-        public void withdraw(int withdrawal)
-        {
-            balance -= withdrawal;
-            Console.WriteLine("Withdrawal Successful");
-        }*/
+
+
         public void deposit(int amount)
         {
             balance += amount;
@@ -81,7 +83,7 @@ namespace ConsoleApp1
 
         public override string ToString()
         {
-            return $"Name:{fullName.ToString()} \nAge: {age}\nID: {id}\nBalance: {balance}";
+            return $"Name: {fullName.ToString()} \nAge: {age}\nGender: {gender}\nID: {id}\nBalance: {balance}";
 
         }
 
