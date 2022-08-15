@@ -43,10 +43,10 @@ namespace ConsoleApp1
 
            if (title != Title.Unknown)
             {
-                output += title + ".";
+                output += title + "." + " ";
             }
 
-            output += (" " + fname + " " + mid + "." + " " + lname);
+            output += (fname + " " + mid + "." + " " + lname);
 
             return output;
         }

@@ -11,13 +11,13 @@ namespace ConsoleApp1
         private Gender gender;
 
 
-        public BankAcc(Name Customer_Name, string Customer_Age, double balance,long id, Gender gender)
+        public BankAcc(Name Customer_Name, string Customer_Age, double balance,long id, short gender)
       {
           this.FullName = Customer_Name;
           this.Age = Customer_Age;
           this.Balance = balance;
           this.ID = id;
-          this.Gender = gender;
+          this.Gender = GetGender(gender);
       }
 
         public Name FullName
@@ -81,12 +81,25 @@ namespace ConsoleApp1
             Console.WriteLine("Withdrawal Successful");
         }
 
+
+
         public override string ToString()
         {
             return $"Name: {fullName.ToString()} \nAge: {age}\nGender: {gender}\nID: {id}\nBalance: {balance}";
 
         }
 
-        
-    }
+        public static Gender GetGender(short genderinput)
+        {
+            switch (genderinput)
+            {
+                case 1: return Gender.Male;
+                case 2: return Gender.Female;
+                default: return Gender.Unknown;
+            }
+        }
+    
+
+
+}
 }

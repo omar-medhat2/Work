@@ -168,7 +168,7 @@ namespace ConsoleApp1
                         while (dep < 1);
                     }
 
-                     User = new BankAcc(Customer_n, a, dep, Int64.Parse(d),GetGender(gender_C));
+                     User = new BankAcc(Customer_n, a, dep, Int64.Parse(d),(gender_C));
                     
                     myBank.Add(User);
                 }
@@ -212,14 +212,6 @@ namespace ConsoleApp1
             
             
         }
-        public static Gender GetGender(short genderinput)
-        {
-            switch (genderinput)
-            {
-                case 1: return Gender.Male;
-                case 2: return Gender.Female;
-                default: return Gender.Unknown;
-            }
-        }
+        
     }
 }
